@@ -9,6 +9,8 @@ RUN apt-get update && \
 RUN sed -i 's/\#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 RUN groupadd -r -g 500 foo
 RUN useradd foo -m -u 500 -g 500 -s /bin/bash && mkdir /home/foo/.ssh && chown foo:foo /home/foo/.ssh && chmod go-rwx /home/foo/.ssh
+RUN useradd dom -m -u 1000080000 -g 0 -s /bin/bash 
+RUN chown dom /etc/ssh/*
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]
